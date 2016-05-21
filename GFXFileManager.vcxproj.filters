@@ -18,9 +18,6 @@
     <ClCompile Include="dllmain.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="CBlowfish.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="IFileManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -32,13 +29,7 @@
     <ClInclude Include="IFileManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="shit_t.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="searchresult.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="CJArchiveFm.h">

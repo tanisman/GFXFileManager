@@ -62,7 +62,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="CBlowfish.cpp" />
     <ClCompile Include="CWFileManager.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="IFileManager.cpp" />
@@ -70,8 +69,6 @@
   <ItemGroup>
     <ClInclude Include="IFileManager.h" />
     <ClInclude Include="CJArchiveFm.h" />
-    <ClInclude Include="resource.h" />
-    <ClInclude Include="searchresult.h" />
     <ClInclude Include="shit_t.h" />
   </ItemGroup>
   <ItemGroup>
