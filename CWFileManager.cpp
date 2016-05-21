@@ -1,3 +1,13 @@
+// Show debug messages on file-open and file-close (slow!)
+#define DEBUG_PRINT_FILES 0
+// Show debug-messages on file-read and file-write (very slow!)
+#define DEBUG_PRINT_IO 0
+// Show debug-messages on unknown methods
+#define DEBUG_PRINT_UNKNOWN 0
+// Show a message when opening failed
+#define DEBUG_PRINT_NOTFOUND 0
+
+
 #include "CWFileManager.h"
 #include <iostream>
 #include <string>
@@ -14,14 +24,16 @@ int CWFileManager::Function_1(int a, int b) {
 		bSomething = (b == 0) ? 0 : 1;
 	}
 
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_1(" << a << ", " << b << ") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_2(int a, int b) {
-
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_2(" << a << ", " << b << ") = 0" << std::endl;
+#endif
 
 	MessageBox(0, "Cannot exec Function_2", "Error", MB_OK);
 
@@ -71,8 +83,9 @@ int CWFileManager::IsOpen() {
 
 int CWFileManager::Function_7() {
 	// This parses something like a list ...
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_7() = 1" << std::endl;
-
+#endif
 	MessageBox(0, "Cannot exec Function_7", "Error", MB_OK);
 
 	return 1;
@@ -86,21 +99,24 @@ int CWFileManager::getMainModule(void) {
 }
 
 int CWFileManager::Function_9(int a) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_9(" << a << ") = -1";
+#endif
 
 	return -1;
 }
 
 // This is a shortcut for open ...
 int CWFileManager::Open2(CJArchiveFm *fm, const char *filename, int access, int unknown) {
-	/*std::cout << "WFM::Open2(" 
+#if DEBUG_PRINT_FILES == 1
+	std::cout << "WFM::Open2(" 
 		<< std::hex << fm
 		<< ", \"" << filename << "\""
 		<< ", " << std::hex << access
 		<< ", " << std::hex << unknown
 		<< ") = 0" << std::endl;
-		*/
-	
+#endif
+
 	fm->p15 = 1;
 	fm->fm_instance = (int*)this;
 
@@ -151,70 +167,86 @@ int CWFileManager::Open(const char *filename, int access, int unknown) {
 	SetCurrentDirectory(this->current_dir);
 
 	HANDLE hFile = CreateFile(filename, access, dwShareMode, 0, dwCreationDistribution, FILE_ATTRIBUTE_ARCHIVE, 0);
-	
-	if (strstr(filename, "noble") != 0) {
-		std::cout << "WFM::Open("
-			<< "\"" << filename << "\""
-			<< ", " << std::hex << access
-			<< ", " << std::hex << unknown
-			<< ") = " << (int)hFile << std::endl;
+
+#if DEBUG_PRINT_FILES == 1
+	std::cout << "WFM::Open("
+		<< "\"" << filename << "\""
+		<< ", 0x" << std::hex << access
+		<< ", 0x" << std::hex << unknown
+		<< ") = 0x" << std::hex << (int)hFile << std::endl;
+#endif
+
+	// Example filtering
+	if (strstr(filename, "nvm")) {
+		std::cout << "Opening File in " << this->current_dir << filename << std::endl;
 	}
-	//std::cout << "Opening File in " << this->current_dir << filename << std::endl;
+
+#if DEBUG_PRINT_NOTFOUND == 1
+	if (hFile == INVALID_HANDLE_VALUE) {
+		std::cout << "Error opening file: " << this->current_dir << filename << std::endl;
+	}
+#endif
 	
 	return (int)hFile;
-
 }
 
 int CWFileManager::Function_12(void)  {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_12() = -1" << std::endl;
+#endif
 	return -1;
 }
 
 
 int CWFileManager::Function_13(void)  {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_13() = 0" << std::endl;
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_14(int a, int b, int c)  {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_14("
 		<< std::hex << a
 		<< ", " << std::hex << b
 		<< ", " << std::hex << c
 		<< ") = 0" << std::endl;
-
+#endif
 	MessageBox(0, "Cannot exec Function_14", "Error", MB_OK);
 
 	return 0;
 }
 
 int CWFileManager::Function_15(char* fullpath, int b) {
-
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_15("
 		<< "\"" << fullpath << "\""
 		<< ", " << std::hex << b
 		<< ") = 0" << std::endl;
-
+#endif
 	MessageBox(0, "Cannot exec Function_15", "Error", MB_OK);
 
 	return -1;
 }
 
 int CWFileManager::Function_16(int a) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_16("
 		<< std::hex << a
 		<< ") = 0" << std::endl;
-
+#endif
 	MessageBox(0, "Cannot exec Function_16", "Error", MB_OK);
 
 	return 0;
 }
 
 int CWFileManager::Close(int index) {
-	/*std::cout << "WFM::Close("
-		<< index
+#if DEBUG_PRINT_FILES == 1
+	std::cout << "WFM::Close(0x"
+		<< std::hex << index
 		<< ") = 0" << std::endl;
-		*/
+#endif
 	return CloseHandle((HANDLE)index);
 }
 
@@ -222,12 +254,12 @@ int CWFileManager::Close(int index) {
 int CWFileManager::Read(int hFile, char* lpBuffer, int nNumberOfBytesToWrite, unsigned long* lpNumberOfBytesWritten) {
 
 	/*std::cout << "WFM::Read("
-		<< std::hex << hFile
-		<< ", 0x" << std::hex << (int)lpBuffer
-		<< ", " << nNumberOfBytesToWrite
-		<< ", 0x" << std::hex << lpNumberOfBytesWritten
-		<< ") = ";
-		*/
+	<< std::hex << hFile
+	<< ", 0x" << std::hex << (int)lpBuffer
+	<< ", " << nNumberOfBytesToWrite
+	<< ", 0x" << std::hex << lpNumberOfBytesWritten
+	<< ") = ";
+	*/
 	int ret = ReadFile((HANDLE)hFile, lpBuffer, nNumberOfBytesToWrite, lpNumberOfBytesWritten, 0);
 
 	// std::cout << ret << std::endl;
@@ -261,27 +293,29 @@ char* CWFileManager::getCmdLine_Args(void) {
 
 
 void CWFileManager::getShit(shit_t* shit) {
-
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::getShit("
 		<< "0x" << std::hex << shit
 		<< ")" << std::endl;
-
+#endif
 	shit->a = 0;
 	shit->b = 0;
 }
 
 int CWFileManager::setShit(int a, int b) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::setShit("
 		<< "0x" << std::hex << a
 		<< "0x" << std::hex << b
 		<< ") = 0" << std::endl;
+#endif
 
 	return 0;
 }
 
 
 int CWFileManager::CreateDirectory(const char* name) {
-	
+
 	SetCurrentDirectory(this->current_dir);
 	int ret = CreateDirectory(name);
 
@@ -306,7 +340,7 @@ int CWFileManager::RemoveDirectory(const char* name) {
 }
 
 bool CWFileManager::ResetDirectory(void) {
-	
+
 	bool ret = SetCurrentDirectory(this->root_dir);
 	GetCurrentDirectory(sizeof(this->current_dir), this->current_dir);
 
@@ -325,7 +359,7 @@ bool CWFileManager::ResetDirectory(void) {
 }
 
 bool CWFileManager::ChangeDirectory(char* dirname) {
-	
+
 	if (dirname[0] == 0) {
 		return 1;
 	}
@@ -382,44 +416,44 @@ int CWFileManager::GetVirtualPath(char* dest) {
 }
 
 int CWFileManager::Function_31(int a, char* filename, int b) {
-	
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_31("
 		<< std::hex << a << ", " 
 		<< std::hex << filename << ", "
 		<< std::hex << b
 		<< ") = 0" << std::endl;
+#endif
 
-	
 	return 0;
 }
 
 
 int CWFileManager::Function_32(int a, int b) {
-
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_32("
 		<< std::hex << a << ", " 
 		<< std::hex << b
 		<< ") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_33(int a) {
-
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_33("
 		<< std::hex << a 
 		<< ") = 0" << std::endl;
-
+#endif
 	// Should always return 1 ...
 	return 0;
 }
 
 int CWFileManager::FileNameFromHandle(int hFile, char* dst, size_t count) {
 	/*std::cout << "WFM::FileNameFromHandle("
-		<< std::hex << hFile << ", "
-		<< std::hex << (int)dst << ", "
-		<< std::hex << count
-		<< ") = 0" << std::endl;
+	<< std::hex << hFile << ", "
+	<< std::hex << (int)dst << ", "
+	<< std::hex << count
+	<< ") = 0" << std::endl;
 	*/
 	char buffer[512] = {0};
 
@@ -444,10 +478,10 @@ int CWFileManager::GetFileSize(int hFile, LPDWORD lpFileSizeHigh) {
 	int ret = ::GetFileSize((HANDLE)hFile, lpFileSizeHigh);
 	/*
 	std::cout << "WFM::GetFileSize("
-		<< std::hex << hFile << ", "
-		<< std::hex << lpFileSizeHigh
-		<< ") = " << ret << std::endl;
-		*/
+	<< std::hex << hFile << ", "
+	<< std::hex << lpFileSizeHigh
+	<< ") = " << ret << std::endl;
+	*/
 	return ret;
 }
 
@@ -466,7 +500,7 @@ BOOL CWFileManager::GetFileTime(int hFile, LPFILETIME lpCreationTime, LPFILETIME
 
 
 BOOL CWFileManager::SetFileTime(int hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastWriteTime) {
-	
+
 	std::cout << "WFM::SetFileTime("
 		<< std::hex << hFile << ", "
 		<< std::hex << lpCreationTime << ", "
@@ -485,11 +519,11 @@ int CWFileManager::Seek(int hFile, LONG lDistanceToMove, DWORD dwMoveMethod) {
 	int ret = SetFilePointer((HANDLE)hFile, lDistanceToMove, 0, dwMoveMethod);
 	/*
 	std::cout << "WFM::Seek("
-		<< std::hex << hFile << ", "
-		<< lDistanceToMove << ", "
-		<< std::hex << dwMoveMethod
-		<< ") = " << ret << std::endl;
-		*/
+	<< std::hex << hFile << ", "
+	<< lDistanceToMove << ", "
+	<< std::hex << dwMoveMethod
+	<< ") = " << ret << std::endl;
+	*/
 	return ret;
 }
 
@@ -510,7 +544,7 @@ void CWFileManager::set_hwnd(int nhwnd) {
 
 void CWFileManager::set_error_handler(error_handler_t callback) {
 
-	std::cout << "WFM::set_error_handler("
+	std::cout << "WFM::set_error_handler(0x"
 		<< std::hex << callback <<
 		")" << std::endl;
 
@@ -518,61 +552,61 @@ void CWFileManager::set_error_handler(error_handler_t callback) {
 }
 
 int CWFileManager::Function_42(int a, int b, int c, int d) {
-	
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_42("
 		<< std::hex << a << ", "
 		<< std::hex << b << ", "
 		<< std::hex << c << ", "
 		<< std::hex << d <<
 		") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_43(int a, int b, int c, int d) {
-	
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_43("
 		<< std::hex << a << ", "
 		<< std::hex << b << ", "
 		<< std::hex << c << ", "
 		<< std::hex << d <<
 		") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_44(int a, int b, int c, int d) {
-	
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_44("
 		<< std::hex << a << ", "
 		<< std::hex << b << ", "
 		<< std::hex << c << ", "
 		<< std::hex << d <<
 		") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_45(int a, int b, int c, int d) {
-	
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_45("
 		<< std::hex << a << ", "
 		<< std::hex << b << ", "
 		<< std::hex << c << ", "
 		<< std::hex << d <<
 		") = 0" << std::endl;
-
+#endif
 	return 0;
 }
 
 
 int CWFileManager::file_exists(char* name, int flags) {
-	
+
 	char buffer[512];
 
 	strcpy_s(buffer, sizeof(buffer), current_dir);
 	strcat_s(buffer, sizeof(buffer), name);
-	
+
 	int attrib = GetFileAttributes(buffer);
 
 	int ret = 0; // File found
@@ -582,34 +616,41 @@ int CWFileManager::file_exists(char* name, int flags) {
 	}
 
 	/*std::cout << "WFM::file_exists("
-		<< "\"" << name << "\", "
-		<< std::hex << flags
-		<< ") = " << ret << std::endl;
-		*/
+	<< "\"" << name << "\", "
+	<< std::hex << flags
+	<< ") = " << ret << std::endl;
+	*/
 	return ret;
 }
 
 int CWFileManager::Function_49(void) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_49() = 0" << std::endl;
+#endif
 	return 0;
 }
 
 int CWFileManager::Function_50(int a) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function_50("
 		<< std::hex << a
 		<< ") = 0" << std::endl;
+#endif
 	return 0;
 }
 
 int CWFileManager::Function53(int a) {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function53("
 		<< std::hex << a
 		<< ") = 0" << std::endl;
+#endif
 	return 0;
 }
 
 int CWFileManager::Function54() {
+#if DEBUG_PRINT_UNKNOWN == 1
 	std::cout << "WFM::Function54() = 0" << std::endl;
-
+#endif
 	return 0;
 }
