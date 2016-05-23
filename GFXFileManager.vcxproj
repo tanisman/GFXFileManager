@@ -74,9 +74,6 @@
     <ClInclude Include="shit_t.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="res.rc" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="CWFileManager.h" />
     <None Include="export.def" />
   </ItemGroup>
