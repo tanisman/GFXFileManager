@@ -44,7 +44,7 @@ public:
 	virtual int Function_13(void);
 	virtual int Function_14(int, int, int);
 	virtual int Function_15(char* fullpath, int);
-	virtual int Function_16(int);
+	virtual int Delete(int hFile);
 	virtual int Close(int index);
 
 	virtual int Read(int hFile, char* lpBuffer, int nNumberOfBytesToWrite, unsigned long *lpNumberOfBytesWritten);

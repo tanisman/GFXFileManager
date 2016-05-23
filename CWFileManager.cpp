@@ -232,13 +232,12 @@ int CWFileManager::Function_15(char* fullpath, int b) {
 	return -1;
 }
 
-int CWFileManager::Function_16(int a) {
+int CWFileManager::Delete(int hFile) {
 #if DEBUG_PRINT_UNKNOWN == 1
-	std::cout << "WFM::Function_16("
-		<< std::hex << a
+	std::cout << "WFM::Delete("
+		<< std::hex << hFile
 		<< ") = 0" << std::endl;
 #endif
-	MessageBox(0, "Cannot exec Function_16", "Error", MB_OK);
 
 	return 0;
 }
