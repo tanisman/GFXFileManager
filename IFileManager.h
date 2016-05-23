@@ -68,7 +68,7 @@ public:
 	virtual void set_hwnd(int) = 0; //
 	virtual void set_error_handler(error_handler_t callback) = 0; //sets a callback
 	virtual int Function_42(int, int, int, int) = 0; //Search file on disk (historic code?)
-	virtual int Function_43(int, int, int, int) = 0; //open file(s)
+	virtual int ImportFile(char *srcdir, char *dstdir, char *filename, int d) = 0; //open file(s)
 	virtual int Function_44(int, int, int, int) = 0; //create directories on disk
 	virtual int Function_45(int, int, int, int) = 0; //Open File(s) and write
 

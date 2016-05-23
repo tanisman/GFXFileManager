@@ -565,12 +565,12 @@ int CWFileManager::Function_42(int a, int b, int c, int d) {
 	return 0;
 }
 
-int CWFileManager::Function_43(int a, int b, int c, int d) {
+int CWFileManager::ImportFile(char *srcdir, char *dstdir, char *filename, int d) {
 #if DEBUG_PRINT_UNKNOWN == 1
-	std::cout << "WFM::Function_43("
-		<< std::hex << a << ", "
-		<< std::hex << b << ", "
-		<< std::hex << c << ", "
+	std::cout << "WFM::ImportFile("
+		<< "\"" << srcdir << "\", "
+		<< "\"" << dstdir << "\", "
+		<< "\"" << filename << "\", "
 		<< std::hex << d <<
 		") = 0" << std::endl;
 #endif

@@ -92,7 +92,7 @@ public:
 
 	// historic
 	virtual int Function_42(int, int, int, int);
-	virtual int Function_43(int, int, int, int);
+	virtual int ImportFile(char *srcdir, char *dstdir, char *filename, int d);
 	virtual int Function_44(int, int, int, int);
 	virtual int Function_45(int, int, int, int);
 
