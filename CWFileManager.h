@@ -110,4 +110,8 @@ public:
 	virtual ~CWFileManager() {
 
 	};
+
+	CWFileManager() {
+		this->bIsOpen = 0;
+	}
 };

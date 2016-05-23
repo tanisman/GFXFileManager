@@ -62,6 +62,8 @@ int CWFileManager::OpenContainer(const char *filename, const char* password, int
 	strcpy_s(this->root_dir, sizeof(this->root_dir), buffer);
 	this->ResetDirectory();
 
+	this->bIsOpen = 1;
+
 	return 1;
 }
 
@@ -76,9 +78,9 @@ int CWFileManager::CloseContainer() {
 
 int CWFileManager::IsOpen() {
 
-	std::cout << "WFM::IsOpen() = 1" << std::endl;
+	std::cout << "WFM::IsOpen() = " << this->bIsOpen << std::endl;
 
-	return 1;
+	return bIsOpen;
 }
 
 int CWFileManager::Function_7() {
