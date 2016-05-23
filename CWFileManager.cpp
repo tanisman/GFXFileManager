@@ -416,36 +416,73 @@ int CWFileManager::GetVirtualPath(char* dest) {
 	return 1;
 }
 
-int CWFileManager::Function_31(int a, char* filename, int b) {
-#if DEBUG_PRINT_UNKNOWN == 1
-	std::cout << "WFM::Function_31("
-		<< std::hex << a << ", " 
+
+
+
+searchresult_t* CWFileManager::FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry) {
+	
+	std::cout << "WFM::FindFirstFile("
+		<< std::hex << search << ", " 
 		<< std::hex << filename << ", "
-		<< std::hex << b
+		<< std::hex << entry
 		<< ") = 0" << std::endl;
-#endif
+
+	
+	search->success = 0;
+
+	if (this->bListMoreFiles >= 0) {
+		
+		search->success = 1;
+
+		entry->type = ENTRY_FILE;
+
+		
+		entry->timestamp.dwLowDateTime = 0x80000;
+
+		entry->size = 1337;
+
+
+
+		strcpy_s(entry->name, sizeof(entry->name), "Benis.txt");
+		
+		this->bListMoreFiles--;
+	}
+
+
+	return search;
+}
+
+int CWFileManager::FindNextFile(searchresult_t* search, result_entry_t* entry) {
+
+	std::cout << "WFM::FindNextFile("
+		<< std::hex << search << ", " 
+		<< std::hex << entry
+		<< ") = 0" << std::endl;
+
+	search->success = 0;
+
+	if (this->bListMoreFiles >= 0) {
+		
+		search->success = 1;
+
+		entry->type = ENTRY_FILE;
+
+		strcpy_s(entry->name, sizeof(entry->name), "Benis.txt");
+		
+		this->bListMoreFiles--;
+	}
+
 
 	return 0;
 }
 
-
-int CWFileManager::Function_32(int a, int b) {
-#if DEBUG_PRINT_UNKNOWN == 1
-	std::cout << "WFM::Function_32("
-		<< std::hex << a << ", " 
-		<< std::hex << b
-		<< ") = 0" << std::endl;
-#endif
-	return 0;
-}
-
-int CWFileManager::Function_33(int a) {
-#if DEBUG_PRINT_UNKNOWN == 1
-	std::cout << "WFM::Function_33("
+int CWFileManager::FindClose(int a) {
+	std::cout << "WFM::FindClose("
 		<< std::hex << a 
 		<< ") = 0" << std::endl;
-#endif
+
 	// Should always return 1 ...
+	this->bListMoreFiles = 1;
 	return 0;
 }
 

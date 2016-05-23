@@ -22,6 +22,9 @@ public:
 	char pad_0x0270[0x1D0]; //0x0270
 
 
+	int bListMoreFiles;
+
+
 public:
 	virtual int get_mode(void);
 	virtual int Function_1(int, int);
@@ -70,11 +73,11 @@ public:
 	virtual int GetVirtualPath(char* dest);
 	
 	// Listing files 
-	virtual int Function_31(int, char* filename, int); //Find First File
-	virtual int Function_32(int, int); //find next file
-	virtual int Function_33(int);
+	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry);
+	virtual int FindNextFile(searchresult_t* search, result_entry_t* entry);
+	virtual int FindClose(int);
 
-	// file information
+	// File information
 	virtual int FileNameFromHandle(int hFile, char* dst, size_t count); //GetFileName
 	virtual int GetFileSize(int hFile, LPDWORD lpFileSizeHigh); //
 
@@ -113,5 +116,6 @@ public:
 
 	CWFileManager() {
 		this->bIsOpen = 0;
+		this->bListMoreFiles = 1;
 	}
 };

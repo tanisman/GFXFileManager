@@ -35,6 +35,12 @@
     <ClInclude Include="CJArchiveFm.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="searchresult.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="result_entry_t.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res.rc">

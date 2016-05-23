@@ -69,6 +69,8 @@
   <ItemGroup>
     <ClInclude Include="IFileManager.h" />
     <ClInclude Include="CJArchiveFm.h" />
+    <ClInclude Include="result_entry_t.h" />
+    <ClInclude Include="searchresult.h" />
     <ClInclude Include="shit_t.h" />
   </ItemGroup>
   <ItemGroup>

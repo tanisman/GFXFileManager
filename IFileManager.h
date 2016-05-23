@@ -5,6 +5,8 @@
 
 #include "shit_t.h"
 #include "CJArchiveFm.h"
+#include "searchresult.h"
+#include "result_entry_t.h"
 
 #define FM_VERSION 0x1007
 
@@ -56,9 +58,14 @@ public:
 	virtual int SetVirtualPath(char *path) = 0; //set root
 	virtual int GetVirtualPath(char* dest) = 0; //similar on both impl
 	
-	virtual int Function_31(int, char* filename, int) = 0; //Find First File
-	virtual int Function_32(int, int) = 0; //find next file
-	virtual int Function_33(int) = 0; //find close
+	// Searching
+
+	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry) = 0; //Find First File
+	virtual int FindNextFile(searchresult_t* search, result_entry_t* entry) = 0; //find next file
+	virtual int FindClose(int) = 0; //find close
+
+	// Others
+
 	virtual int FileNameFromHandle(int hFile, char* dst, size_t count) = 0; //GetFileName
 	virtual int GetFileSize(int hFile, LPDWORD lpFileSizeHigh) = 0; //
 	virtual BOOL GetFileTime(int hFile, LPFILETIME lpCreationTime, LPFILETIME lpLastWriteTime) = 0; //
@@ -67,6 +74,7 @@ public:
 	virtual int get_hwnd(void) = 0; //
 	virtual void set_hwnd(int) = 0; //
 	virtual void set_error_handler(error_handler_t callback) = 0; //sets a callback
+
 	virtual int Function_42(int, int, int, int) = 0; //Search file on disk (historic code?)
 	virtual int ImportFile(char *srcdir, char *dstdir, char *filename, int d) = 0; //open file(s)
 	virtual int Function_44(int, int, int, int) = 0; //create directories on disk
