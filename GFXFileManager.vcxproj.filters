@@ -15,35 +15,35 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="dllmain.cpp">
+    <ClCompile Include="src/dllmain.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="IFileManager.cpp">
+    <ClCompile Include="src/IFileManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="CWFileManager.cpp">
+    <ClCompile Include="src/CWFileManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IFileManager.h">
+    <ClInclude Include="src/IFileManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="shit_t.h">
+    <ClInclude Include="src/shit_t.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="CJArchiveFm.h">
+    <ClInclude Include="src/CJArchiveFm.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="searchresult.h">
+    <ClInclude Include="src/searchresult.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="result_entry_t.h">
+    <ClInclude Include="src/result_entry_t.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CWFileManager.h">
+    <None Include="src/CWFileManager.h">
       <Filter>Headerdateien</Filter>
     </None>
     <None Include="export.def">

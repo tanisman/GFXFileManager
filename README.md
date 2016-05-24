@@ -6,7 +6,7 @@ An example replacement for the Joymax File Manager used in Silkroad Online.
 
 This code will allow you to load all game-related files directly from your harddisk instead of the pk2-container. This will simplify your development process.
 
-![a cool screenshot](https://github.com/florian0/GFXFileManager/blob/master/screenshot.png)
+![a cool screenshot](https://github.com/florian0/GFXFileManager/blob/master/doc/screenshot.png)
 
 Simply compile the code using *Visual Studio 2010*. Other versions, especially newer, may not work properly (Feel free to test and report your results).
 Place the compiled `GFXFileManager.dll` inside your Silkroad Folder.
