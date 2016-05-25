@@ -21,21 +21,33 @@ The implementation is far from complete and has been tested just barely. At the 
 This code also allows you to create your own container-format. Study the code and implement all required functions for your container.
 
 The code will automatically output every function call. This is useful for debugging but will slow everything a lot, so use with care.
-Some messages are configureable. Simply change the first lines of `CWFileManager.cpp`:
+Some messages are configureable. Simply change this line of `debug.cpp`:
 ```
-// Show debug messages on file-open and file-close (slow)
-#define DEBUG_PRINT_FILES 0
-
-// Show debug-messages on file-read and file-write (very slow!)
-#define DEBUG_PRINT_IO 0
-
-// Show debug-messages on unknown methods
-#define DEBUG_PRINT_UNKNOWN 0
-
-// Show a messagen when opening failed
-#define DEBUG_PRINT_NOTFOUND 0
+int m_group = DEBUG_FULL;
 ```
-You really should consider creating custom filters for filenames.
+There are several groups available:
+```
+enum debug_group {
+	DEBUG_OFF			= 0,
+	DEBUG_OBJECT		= 1,
+	DEBUG_CONTAINER		= 2,
+	DEBUG_FILE_GEN		= 4,
+	DEBUG_FILE			= 8,
+	DEBUG_FILE_NOTFOUND	= 16,
+	DEBUG_IO			= 32,
+	DEBUG_DIRECTORY		= 64,
+	DEBUG_DIRECTORY_GEN	= 128,
+	DEBUG_SEARCH		= 256,
+	DEBUG_UNKNOWN		= 512,
+	DEBUG_OTHER			= 1024,
+	DEBUG_FULL			= 0xFFFFFFFF
+};
+```
+
+You can also combine multiple groups like this:
+```
+int m_group = DEBUG_CONTAINER | DEBUG_FILE_GEN | DEBUG_FILE_NOTFOUND | DEBUG_OTHER;
+```
 
 ## Troubleshooting & Support
 
