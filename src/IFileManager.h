@@ -60,7 +60,7 @@ public:
 	
 	// Searching
 
-	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry) = 0; //Find First File
+	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* pattern, result_entry_t* entry) = 0; //Find First File
 	virtual int FindNextFile(searchresult_t* search, result_entry_t* entry) = 0; //find next file
 	virtual int FindClose(int) = 0; //find close
 

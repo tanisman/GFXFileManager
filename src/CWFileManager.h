@@ -73,7 +73,7 @@ public:
 	virtual int GetVirtualPath(char* dest);
 	
 	// Listing files 
-	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry);
+	virtual searchresult_t* FindFirstFile(searchresult_t* search, char* pattern, result_entry_t* entry);
 	virtual int FindNextFile(searchresult_t* search, result_entry_t* entry);
 	virtual int FindClose(int);
 

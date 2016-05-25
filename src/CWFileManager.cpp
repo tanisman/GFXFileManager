@@ -358,9 +358,9 @@ int CWFileManager::GetVirtualPath(char* dest) {
 	return 1;
 }
 
-searchresult_t* CWFileManager::FindFirstFile(searchresult_t* search, char* filename, result_entry_t* entry) {
+searchresult_t* CWFileManager::FindFirstFile(searchresult_t* search, char* pattern, result_entry_t* entry) {
 
-	debug(DEBUG_SEARCH, "WFM::FindFirstFile(%08x, %08x, %08x) = 0\n", search, filename, entry);
+	debug(DEBUG_SEARCH, "WFM::FindFirstFile(%08x, \"%s\", %08x) = 0\n", search, pattern, entry);
 
 	search->success = 0;
 
@@ -388,7 +388,7 @@ searchresult_t* CWFileManager::FindFirstFile(searchresult_t* search, char* filen
 
 int CWFileManager::FindNextFile(searchresult_t* search, result_entry_t* entry) {
 
-	debug(DEBUG_SEARCH, "WFM::FindNextFile(%08x, %08x) = 0", search, entry);
+	debug(DEBUG_SEARCH, "WFM::FindNextFile(%08x, %08x) = 0\n", search, entry);
 
 	search->success = 0;
 
