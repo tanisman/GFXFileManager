@@ -110,9 +110,7 @@ public:
 	virtual int Function53(int); //
 	virtual int Function54(); //
 
-	virtual ~CWFileManager() {
-
-	};
+	virtual ~CWFileManager() { };
 
 	CWFileManager() {
 		this->bIsOpen = 0;

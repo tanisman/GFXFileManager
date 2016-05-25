@@ -24,6 +24,9 @@
     <ClCompile Include="src/CWFileManager.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\debug.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/IFileManager.h">
@@ -39,6 +42,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src/result_entry_t.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\debug.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

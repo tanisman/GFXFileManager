@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include "CWFileManager.h"
+#include "debug.h"
 
 HMODULE hInstance;
 
@@ -31,6 +32,9 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReason, LPVOID lpReserved) {
 EXPORT int __stdcall  GFXDllCreateObject(int mode, IFileManager** object, int version) {
 	char message[100];
 
+	debug("GFXDllCreateObject(%08x, %08x, %04x)\n", mode, object, version);
+	MessageBox(0, "CreateObject called", "", MB_OK);
+
 	if (version != TARGET_VERSION) {
 		sprintf(message, "Dll Version(%x)\nNecessary Version (%x)", version, TARGET_VERSION);
 		MessageBox(0, message, "Invalid Version(GFXFileManager.dll)", MB_OK|MB_APPLMODAL);
@@ -50,6 +54,7 @@ EXPORT int __stdcall  GFXDllCreateObject(int mode, IFileManager** object, int ve
 }
 
 EXPORT void __stdcall GFXDllReleaseObject(IFileManager* object) {
+	debug("GFXDllReleaseObject(%08x)\n", object);
 	delete object;
 }
 
