@@ -37,7 +37,7 @@ public:
 	virtual int Function_13(void) = 0; //return 0
 	virtual int Function_14(int, int, int) = 0; //
 	virtual int Function_15(char* fullpath, int) = 0; //
-	virtual int Delete(int hFile) = 0; //
+	virtual int Delete(char *filename) = 0; //
 	virtual int Close(int hFile) = 0; //
 	virtual int Read(int hFile, char* lpBuffer, int nNumberOfBytesToWrite, unsigned long *lpNumberOfBytesWritten) = 0;
 	virtual int Write(int hFile, char* lpBuffer, int nNumberOfBytesToWrite, unsigned long *lpNumberOfBytesWritten) = 0;

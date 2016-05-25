@@ -205,9 +205,9 @@ int CWFileManager::Function_15(char* fullpath, int b) {
 	return -1;
 }
 
-int CWFileManager::Delete(int hFile) {
+int CWFileManager::Delete(char *filename) {
 
-	debug(DEBUG_FILE, "WFM::Delete(%08x) = 0\n", hFile);
+	debug(DEBUG_FILE, "WFM::Delete(\"%s\") = 0\n", filename);
 
 
 	return 0;
