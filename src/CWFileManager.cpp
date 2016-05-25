@@ -55,7 +55,7 @@ int CWFileManager::CreateContainer(const char *filename, const char *password) {
 int CWFileManager::OpenContainer(const char *filename, const char* password, int mode) {
 
 	debug("WFM::OpenContainer(\"%s\", \"%s\", 0x%08x) = 1\n", filename, password, mode);
-	MessageBox(0, "Open called!", "", MB_OK);
+	//MessageBox(0, "Open called!", "", MB_OK);
 	
 	char buffer[512] = {0};
 	strcpy_s(buffer, sizeof(buffer), filename);

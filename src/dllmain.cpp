@@ -33,7 +33,7 @@ EXPORT int __stdcall  GFXDllCreateObject(int mode, IFileManager** object, int ve
 	char message[100];
 
 	debug("GFXDllCreateObject(%08x, %08x, %04x)\n", mode, object, version);
-	MessageBox(0, "CreateObject called", "", MB_OK);
+	//MessageBox(0, "CreateObject called", "", MB_OK);
 
 	if (version != TARGET_VERSION) {
 		sprintf(message, "Dll Version(%x)\nNecessary Version (%x)", version, TARGET_VERSION);
