@@ -5,7 +5,7 @@
 // Show debug-messages on unknown methods
 #define DEBUG_PRINT_UNKNOWN 0
 // Show a message when opening failed
-#define DEBUG_PRINT_NOTFOUND 1
+#define DEBUG_PRINT_NOTFOUND 0
 // Suppress all error MessageBoxes (not recommended)
 #define DEBUG_SUPPRESS_ERROR 1
 
@@ -50,7 +50,7 @@ int CWFileManager::Function_2(int a, int b) {
 	debug("WFM::Function_2(%d , %d) = 0\n", a, b);
 #endif
 
-	MessageBox(0, "Cannot exec Function_2", "Error", MB_OK);
+	_ERROR_MSGBOX();
 
 	return 0;
 }
@@ -103,7 +103,7 @@ int CWFileManager::Function_7() {
 #if DEBUG_PRINT_UNKNOWN == 1
 	debug("WFM::Function_7() = 1\n");
 #endif
-	MessageBox(0, "Cannot exec Function_7", "Error", MB_OK);
+	_ERROR_MSGBOX();
 
 	return 1;
 }
@@ -217,7 +217,7 @@ int CWFileManager::Function_14(int a, int b, int c)  {
 	debug("WFM::Function_14(%d, %d, %d) = 0\n", a, b, c);
 #endif
 
-	MessageBox(0, "Cannot exec Function_14", "Error", MB_OK);
+	_ERROR_MSGBOX();
 
 	return 0;
 }
@@ -226,7 +226,7 @@ int CWFileManager::Function_15(char* fullpath, int b) {
 #if DEBUG_PRINT_UNKNOWN == 1
 	debug("WFM::Function_15(\"%s\", %08x) = 0\n", fullpath, b);
 #endif
-	MessageBox(0, "Cannot exec Function_15", "Error", MB_OK);
+	_ERROR_MSGBOX();
 
 	return -1;
 }
