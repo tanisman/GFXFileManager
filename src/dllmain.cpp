@@ -32,7 +32,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ulReason, LPVOID lpReserved) {
 EXPORT int __stdcall  GFXDllCreateObject(int mode, IFileManager** object, int version) {
 	char message[100];
 
-	debug("GFXDllCreateObject(%08x, %08x, %04x)\n", mode, object, version);
+	debug(DEBUG_OBJECT, "GFXDllCreateObject(%08x, %08x, %04x)\n", mode, object, version);
 	//MessageBox(0, "CreateObject called", "", MB_OK);
 
 	if (version != TARGET_VERSION) {
@@ -54,7 +54,7 @@ EXPORT int __stdcall  GFXDllCreateObject(int mode, IFileManager** object, int ve
 }
 
 EXPORT void __stdcall GFXDllReleaseObject(IFileManager* object) {
-	debug("GFXDllReleaseObject(%08x)\n", object);
+	debug(DEBUG_OBJECT, "GFXDllReleaseObject(%08x)\n", object);
 	delete object;
 }
 

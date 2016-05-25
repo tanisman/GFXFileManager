@@ -2,17 +2,20 @@
 #include <stdio.h>
 #include <stdarg.h>
 
+int m_group = DEBUG_FULL;
 
-int debug(const char *format, ...) {
+int debug(debug_group group, const char *format, ...) {
 	va_list vl;
 	char buffer[512];
 
+	// Filter out unwanted debugging messages
+	if (!(group & m_group)) {
+		return 0;
+	}
+
 	va_start(vl, format);
 
-	//vsnprintf_s(buffer, sizeof(buffer), format, vl);
-
 	vprintf(format, vl);
-
 
 	va_end(vl);
 
